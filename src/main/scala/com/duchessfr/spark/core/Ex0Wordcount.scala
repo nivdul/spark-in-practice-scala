@@ -7,7 +7,7 @@ import org.apache.spark.rdd.RDD
 import com.duchessfr.spark.utils._
 
 /**
- *  The Java Spark API documentation: http://spark.apache.org/docs/latest/api/java/index.html
+ *  The scala Spark API documentation: http://spark.apache.org/docs/latest/api/scala/index.html
  *
  *  Here the goal is to count how much each word appears in a file and make some operation on the result.
  *  We use the mapreduce pattern to do this:
