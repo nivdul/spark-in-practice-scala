@@ -1,0 +1,4 @@
+#!/bin/bash
+#export MESOS_NATIVE_LIBRARY=/usr/local/lib/libmesos.so
+export SPARK_JAVA_OPTS="-XX:+UseConcMarkSweepGC"
+java -Xmx1024m -jar $(dirname $0)/sbt-launch.jar "$@"
