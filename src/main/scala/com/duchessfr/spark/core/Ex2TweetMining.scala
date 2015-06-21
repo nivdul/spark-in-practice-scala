@@ -2,9 +2,7 @@
 package com.duchessfr.spark.core
 
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark._
 import org.apache.spark.rdd._
-import org.apache.spark.SparkContext._
 import com.duchessfr.spark.utils._
 import com.duchessfr.spark.utils.TweetUtils.Tweet
 
