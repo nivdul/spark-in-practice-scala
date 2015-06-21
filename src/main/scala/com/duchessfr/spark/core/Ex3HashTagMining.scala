@@ -6,6 +6,7 @@ import org.apache.spark.rdd._
 import com.duchessfr.spark.utils.TweetUtils
 import com.duchessfr.spark.utils.TweetUtils._
 
+
 object Ex3HashTagMining {
 
   // Find all the hashtags mentioned in all the tweets set
