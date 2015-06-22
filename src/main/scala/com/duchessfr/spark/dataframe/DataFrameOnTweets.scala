@@ -83,14 +83,14 @@ object DataFrameOnTweets extends App{
   /**
    *  Find the user who tweets the more
    */
-  def popularTwitterers(): Row = {
+  /*def popularTwitterers(): Row = {
     val dataframe = loadData()
 
-    dataframe.groupBy(dataframe.col("user"))
-             .count()
-             .rdd
-             .sortBy(x => x.get(1), false)
-             .first()
-  }
+    val countByUser = dataframe.groupBy(dataframe.col("user"))
+             .count().rdd
+
+    countByUser.sortBy(x => x.get(1), false, 1)
+        .first()
+  }*/
 
 }

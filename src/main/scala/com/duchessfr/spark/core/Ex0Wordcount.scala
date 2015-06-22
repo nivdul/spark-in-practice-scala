@@ -1,10 +1,8 @@
 package com.duchessfr.spark.core
 
 import org.apache.spark.SparkContext
-import org.apache.spark.SparkContext._
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
-import com.duchessfr.spark.utils._
 
 /**
  *  The scala Spark API documentation: http://spark.apache.org/docs/latest/api/scala/index.html
@@ -19,38 +17,45 @@ import com.duchessfr.spark.utils._
  *  - for each key (=word), the values are added and we will obtain the total amount.
  *
  */
-object Ex0Wordcount extends App {
+object Ex0Wordcount {
 
-    val pathToFile = "data/wordcount.txt"
+  val pathToFile = "data/wordcount.txt"
 
-    def loadData(): RDD[String] = {
-      // create spark configuration and spark context
-      val conf = new SparkConf()
-                          .setAppName("Wordcount")
-                          .setMaster("local[*]")
+  /**
+   *  Load the data from the text file and return an RDD of words
+   */
+  def loadData(): RDD[String] = {
+    // create spark configuration and spark context
+    val conf = new SparkConf()
+                        .setAppName("Wordcount")
+                        .setMaster("local[*]")
 
-      val sc = new SparkContext(conf)
+    val sc = new SparkContext(conf)
 
-      // load data and create an RDD of string, and count each word count
-      sc.textFile(pathToFile).flatMap(line => line.split(" "))
+    // load data and create an RDD of string, and count each word count
+    sc.textFile(pathToFile).flatMap(_.split(" "))
 
-    }
+  }
 
-    def wordcount(): RDD[(String, Int)] = {
-      val tweets = loadData()
+  /**
+   *  Now count how much each word appears !
+   */
+  def wordcount(): RDD[(String, Int)] = {
+    val tweets = loadData
 
-      // mapper step at first and then the reducer step
-      tweets.map (word => (word, 1))
-            .reduceByKey( (a,b) => a+b)
+    // mapper step at first and then the reducer step
+    tweets.map(word => (word, 1))
+          .reduceByKey(_ + _)
 
-    }
+  }
 
+  /**
+   *  Now just keep the word which appear strictly more than 4 times!
+   */
+  def filterOnWordcount(): RDD[(String, Int)] = {
+    val tweets = wordcount
 
-    def filterOnWordcount(): RDD[(String, Int)] = {
-      val tweets = wordcount()
-
-      tweets.filter(couple => couple._2 > 4)
-
-    }
+    tweets.filter(_._2 > 4)
+  }
 
 }
