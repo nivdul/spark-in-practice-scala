@@ -2,18 +2,11 @@ package com.duchessfr.spark.core
 
 import org.apache.spark.{SparkContext, SparkConf}
 
-import org.apache.spark.SparkContext._
-import org.apache.spark.rdd._
 import com.duchessfr.spark.utils.TweetUtils
-import com.duchessfr.spark.utils.TweetUtils._
-import scala.collection.Seq
-import scala.collection.Seq
-import scala.collection.immutable.Seq
 
 object EX4InvertedIndex extends App{
 
   /**
-   *  [Optional]
    *
    *  Buildind a hashtag search engine   *
    *  The goal is to build an inverted index. An inverted is the data
@@ -29,12 +22,12 @@ object EX4InvertedIndex extends App{
   
   // create spark  configuration and spark context
   val conf = new SparkConf()
-    .setAppName("HashTagMining")
+    .setAppName("Inverted index")
     .setMaster("local[*]")
 
   val sc = new SparkContext(conf)
 
-  val tweets = sc.textFile("data/reduced-tweets.txt")
+  val tweets = sc.textFile("data/reduced-tweets.json")
                            .mapPartitions(TweetUtils.parseFromJson(_))
                            .cache
 
