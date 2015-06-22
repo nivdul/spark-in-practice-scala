@@ -32,13 +32,13 @@ object Ex2TweetMining {
   def loadData(): RDD[Tweet] = {
     // create spark configuration and spark context
     val conf = new SparkConf()
-        .setAppName("Wordcount")
+        .setAppName("Tweet mining")
         .setMaster("local[*]")
 
     val sc = new SparkContext(conf)
 
-    // Load the data  and parse it into a Tweet.
-    // Look at the Tweet Objetc in the TweetUtils class.
+    // Load the data and parse it into a Tweet.
+    // Look at the Tweet Object in the TweetUtils class.
     sc.textFile(pathToFile)
         .mapPartitions(TweetUtils.parseFromJson(_))
         .cache
