@@ -39,7 +39,7 @@ class DataFrameOnTweetsSpec extends FunSuite with Matchers {
     data.count should be (329)
   }
 
-  test("should return the most popular twitterers") {
+  test("should return the most popular twitterer") {
     val populars = DataFrameOnTweets.mostPopularTwitterer
     populars should be (258, "#QuissyUpSoon")
   }

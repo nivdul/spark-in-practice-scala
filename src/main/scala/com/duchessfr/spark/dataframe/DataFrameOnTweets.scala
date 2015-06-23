@@ -1,7 +1,6 @@
 package com.duchessfr.spark.dataframe
 
 import org.apache.spark._
-import org.apache.spark.rdd._
 import org.apache.spark.sql._
 
 /**
