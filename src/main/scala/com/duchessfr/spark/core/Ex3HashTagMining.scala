@@ -58,7 +58,6 @@ object Ex3HashTagMining {
      val tags= hashtagMentionedOnTweet
      tags.map(tag => (tag, 1))
          .reduceByKey(_ + _)
-
   }
 
   /**
