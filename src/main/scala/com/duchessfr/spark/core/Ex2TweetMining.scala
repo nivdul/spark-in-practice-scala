@@ -41,23 +41,24 @@ object Ex2TweetMining {
     // Look at the Tweet Object in the TweetUtils class.
     sc.textFile(pathToFile)
         .mapPartitions(TweetUtils.parseFromJson(_))
-        .cache
+
   }
 
   /**
    *  Find all the persons mentioned on tweets (case sensitive)
    */
-  def mentionOnTweet(tweets : RDD[Tweet]) = {
-    val userPattern ="""@(\w+)""".r
-    tweets.flatMap(tweet => userPattern findAllIn tweet.text)
-          .filter(mention => mention.length > 1)
+  def mentionOnTweet(): RDD[String] = {
+    val tweets = loadData
+    tweets.flatMap(tweet => tweet.text.split(" ")
+                                .filter(_.startsWith("@"))
+                                .filter(_.length() > 1))
   }
 
   /**
    *  Count how many times each person is mentioned
    */
-  def countMentions (tweets : RDD[Tweet]) = {
-    val mentions = mentionOnTweet(tweets)
+  def countMentions(): RDD[(String, Int)] = {
+    val mentions = mentionOnTweet
     mentions.map(p => (p, 1))
             .reduceByKey(_ + _)
   }
@@ -65,14 +66,14 @@ object Ex2TweetMining {
   /**
    *  Find the 10 most mentioned persons by descending order
    */
-  def top10mentions (tweets: RDD[Tweet]) = {
-    val mentions= countMentions(tweets).map (k => (k._2, k._1))
-                                       .sortByKey(false)
-                                       .map {case (v , k) => (k,v)}
-                                       .take(10)
+  def top10mentions(): Array[(String, Int)] = {
+    countMentions.map (k => (k._2, k._1))
+                 .sortByKey(false)
+                 .map {case (v , k) => (k,v)}
+                 .take(10)
 
     //Or a much easier way
-    val mentionsBis = countMentions(tweets).top(10)(Ordering.by(m=>m._2))
+    //val mentionsBis = countMentions.top(10)(Ordering.by(m=>m._2))
 
   }
 

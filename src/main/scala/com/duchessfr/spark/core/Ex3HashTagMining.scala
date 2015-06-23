@@ -40,7 +40,6 @@ object Ex3HashTagMining {
     // Look at the Tweet Object in the TweetUtils class.
     sc.textFile(pathToFile)
         .mapPartitions(TweetUtils.parseFromJson(_))
-        .cache
   }
 
   /**

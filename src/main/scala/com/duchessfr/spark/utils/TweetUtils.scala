@@ -16,6 +16,6 @@ object TweetUtils {
 	
 	def parseFromJson(lines:Iterator[String]):Iterator[Tweet] = {
 		val gson = new Gson
-		lines.map( line => gson.fromJson(line, classOf[Tweet]))
+		lines.map(line => gson.fromJson(line, classOf[Tweet]))
 	}
 }

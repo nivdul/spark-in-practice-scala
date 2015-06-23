@@ -48,7 +48,7 @@ object Ex1UserMining {
    *   Return for each user all his tweets
    */
   def tweetsByUser(): RDD[(String, Iterable[Tweet])] = {
-    val tweets = loadData()
+    val tweets = loadData
     tweets.groupBy(_.user)
   }
 
@@ -56,7 +56,7 @@ object Ex1UserMining {
    *  Compute the number of tweets by user
    */
   def tweetByUserNumber(): RDD[(String, Int)] = {
-    val tweets = loadData()
+    val tweets = loadData
     tweets.map(tweet => (tweet.user, 1))
           .reduceByKey(_+_)
   }
@@ -66,7 +66,7 @@ object Ex1UserMining {
    *  Top 10 twitterers
    */
   def topTenTwitterers(): Array[(String, Int)] = {
-    val nbTweetsByUsers = tweetByUserNumber()
+    val nbTweetsByUsers = tweetByUserNumber
     nbTweetsByUsers.sortBy(_._2,false).take(10)
 
     // or
