@@ -1,7 +1,7 @@
 package com.duchessfr.spark.dataframe
 
 import org.apache.spark._
-import org.apache.spark.rdd.RDD
+import org.apache.spark.rdd._
 import org.apache.spark.sql._
 
 /**
@@ -23,7 +23,7 @@ import org.apache.spark.sql._
  *  - find people who are located in Paris
  *  - find the user who tweets the more
  */
-object DataFrameOnTweets extends App{
+object DataFrameOnTweets {
 
 
   val pathToFile = "data/reduced-tweets.json"
@@ -40,7 +40,6 @@ object DataFrameOnTweets extends App{
     val sc = new SparkContext(conf)
 
     //Create a SQL Context
-
     val sqlcontext = new SQLContext(sc)
 
     // Load the data and parse it into a Tweet.
@@ -81,16 +80,18 @@ object DataFrameOnTweets extends App{
 
 
   /**
-   *  Find the user who tweets the more
+   *  Find the 10 user who tweets the more
    */
-  /*def popularTwitterers(): Row = {
+  def mostPopularTwitterer(): (Long, String) = {
     val dataframe = loadData()
 
     val countByUser = dataframe.groupBy(dataframe.col("user"))
-             .count().rdd
+                               .count()
+                               .rdd
 
-    countByUser.sortBy(x => x.get(1), false, 1)
-        .first()
-  }*/
+    countByUser.map(row => (row.get(1).asInstanceOf[Long], row.get(0).asInstanceOf[String]))
+               .sortByKey(false, 1)
+               .first
+  }
 
 }
