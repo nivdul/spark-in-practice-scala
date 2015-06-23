@@ -8,7 +8,7 @@ import org.scalatest._
 class Ex0WordcountSpec extends FunSuite with Matchers {
 
   test("number of data loaded") {
-    val data = Ex0Wordcount.loadData()
+    val data = Ex0Wordcount.loadData
     data.count should be (809)
   }
 

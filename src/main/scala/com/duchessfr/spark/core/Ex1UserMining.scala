@@ -23,7 +23,7 @@ import com.duchessfr.spark.utils.TweetUtils._
  * - find how many tweets each user has
  *
  */
-object Ex1UserMining extends App {
+object Ex1UserMining {
 
   val pathToFile = "data/reduced-tweets.json"
 
@@ -42,7 +42,6 @@ object Ex1UserMining extends App {
     // Look at the Tweet Object in the TweetUtils class.
     sc.textFile(pathToFile)
         .mapPartitions(TweetUtils.parseFromJson(_))
-        .cache
   }
 
   /**
@@ -50,9 +49,7 @@ object Ex1UserMining extends App {
    */
   def tweetsByUser(): RDD[(String, Iterable[Tweet])] = {
     val tweets = loadData()
-
     tweets.groupBy(_.user)
-
   }
 
   /**
@@ -60,7 +57,6 @@ object Ex1UserMining extends App {
    */
   def tweetByUserNumber(): RDD[(String, Int)] = {
     val tweets = loadData()
-
     tweets.map(tweet => (tweet.user, 1))
           .reduceByKey(_+_)
   }
