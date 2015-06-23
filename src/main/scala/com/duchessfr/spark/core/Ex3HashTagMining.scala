@@ -45,20 +45,17 @@ object Ex3HashTagMining {
   /**
    *  Find all the hashtags mentioned on tweets
    */
-  def hashtagMentionedOnTweet(tweets: RDD[Tweet]) = {
-      val pattern ="""#(\w+)""".r
-
-      tweets.flatMap(tweet => pattern findAllIn tweet.text)
-            .filter(mention => mention.length > 1)
+  def hashtagMentionedOnTweet(): RDD[String] = {
+    val tweets = loadData
+    tweets.flatMap(_.text.split(" ").filter(_.startsWith("#")).filter(_.length() > 1))
   }
 
 
   /**
    *  Count how many times each hashtag is mentioned
    */
-  def countMentions(tweets : RDD[Tweet]) = {
-
-     val tags= hashtagMentionedOnTweet(tweets)
+  def countMentions(): RDD[(String, Int)] = {
+     val tags= hashtagMentionedOnTweet
      tags.map(tag => (tag, 1))
          .reduceByKey(_ + _)
 
@@ -67,12 +64,10 @@ object Ex3HashTagMining {
   /**
    *  Find the 10 most popular Hashtags by descending order
    */
-  def top10HashTags (tweets :RDD[Tweet]) ={
-
-    val countTags= countMentions(tweets)
+  def top10HashTags(): Array[(String, Int)] ={
+    val countTags= countMentions
          countTags.sortBy(_._2,false)
                   .take(10)
-
   }
 
 }
