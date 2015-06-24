@@ -19,14 +19,29 @@ import org.apache.spark._
  * OR
  * - a time zone issue (so be certain that the time zone on your computer is the good one)
  *
+ * The Spark Streaming documentation is available on:
+ * http://spark.apache.org/docs/latest/streaming-programming-guide.html
+ *
+ * Spark Streaming is an extension of the core Spark API that enables scalable,
+ * high-throughput, fault-tolerant stream processing of live data streams.
+ * Spark Streaming receives live input data streams and divides the data into batches,
+ * which are then processed by the Spark engine to generate the final stream of results in batches.
+ * Spark Streaming provides a high-level abstraction called discretized stream or DStream,
+ * which represents a continuous stream of data.
+ *
+ * In this exercise we will:
+ * - Print the status of each tweet
+ * - Find the 10 most popular Hashtag
+ *
+ * You can see informations about the streaming in the Spark UI console: http://localhost:4040/streaming/
  */
 object StreamingOnTweets extends App {
 
   def top10Hashtag() = {
-    val CONSUMER_KEY = "AFiNCb8vxYZfhPls2DXyDpF"
-    val CONSUMER_SECRET = "JRg7SyVFkXEESWbzFzC1xaIGRC3xNdTvrekMvMFk6tjKooOR"
-    val ACCESS_TOKEN = "493498548-HCt6LCposCb3Ij7Ygt7ssTxTBPwGoPrnkkDQoaN"
-    val ACCESS_TOKEN_SECRET = "3px3rnBzWa9bmOmOQPWNMpYc4qdOrOdxGFgp6XiCkEKH"
+    val CONSUMER_KEY = "TODO"
+    val CONSUMER_SECRET = "TODO"
+    val ACCESS_TOKEN = "TODO"
+    val ACCESS_TOKEN_SECRET = "TODO"
 
     System.setProperty("twitter4j.oauth.consumerKey", CONSUMER_KEY)
     System.setProperty("twitter4j.oauth.consumerSecret", CONSUMER_SECRET)
@@ -44,7 +59,9 @@ object StreamingOnTweets extends App {
         .setMaster("local[*]")
 
     val sc = new SparkContext(conf)
-    val ssc = new StreamingContext(sc, Seconds(1))
+    val ssc = new StreamingContext(sc, Seconds(2))
+
+    println("Initializing Twitter stream...")
 
     //Here we start a stream of tweets
     val tweetsStream = TwitterUtils.createStream(ssc, None, Array[String]())
@@ -54,30 +71,31 @@ object StreamingOnTweets extends App {
     // Print the status's text of each status
     // You must see tweets appear in the console
     val status = tweetsStream.map(_.getText)
-    status.print()
+    // Here print the status's text: see the Status class
+    // Hint: use the print method
+    // TODO write code here
+
 
     // Find the 10 most popular Hashtag
 
     // For each tweet in the stream filter out all the hashtags
     // stream is like a sequence of RDD so you can do all the operation you did in the first part of the hands-on
-    val hashTags = tweetsStream.flatMap(status => status.getText.split(" ").filter(_.startsWith("#")).filter(_.length() > 1))
+    // Hint: think about what you did in the Hashtagmining part
+    // TODO write code here
+    val hashTags = null
 
     // Now here, find the 10 most popular hashtags in a 30 seconds window
     // Hint: look at the reduceByKeyAndWindow function in the spark doc.
     // Reduce last 60 seconds of data
-    val top10 = hashTags.map(x => (x, 1))
-        .reduceByKeyAndWindow((_ + _), Seconds(30))
-        .map { case (topic, count) => (count, topic) }
-        .transform(_.sortByKey(false))
+    // Hint: look at the transform function to operate on the DStream
+    // TODO write code here
+    val top10 = null
 
     // and return the 10 most populars
-    top10.foreachRDD { rdd => {
-      val topList = rdd.take(10)
-      // Now that we have our top10 we can print them out....
-      topList.foreach { case (count, tag) => println(s"$tag: $count") }
-    }
-    }
+    // Hint: loop on the RDD and take the 10 most popular
+    // TODO write code here
 
+    // Start the context: it won't work if you don't add this!
     ssc.start
     ssc.awaitTermination
   }
