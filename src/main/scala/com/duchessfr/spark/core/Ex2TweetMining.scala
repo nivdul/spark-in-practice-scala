@@ -22,7 +22,7 @@ import com.duchessfr.spark.utils.TweetUtils.Tweet
  *  - Count how many times each person is mentioned
  *  - Find the 10 most mentioned persons by descending order
  *
- *  Use the Ex2TweetMiningTest to implement the code.
+ *  Use the Ex2TweetMiningSpec to implement the code.
  */
 object Ex2TweetMining {
 
