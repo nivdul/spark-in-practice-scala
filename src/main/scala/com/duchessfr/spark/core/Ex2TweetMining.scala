@@ -21,6 +21,8 @@ import com.duchessfr.spark.utils.TweetUtils.Tweet
  *  - Find all the persons mentioned on tweets
  *  - Count how many times each person is mentioned
  *  - Find the 10 most mentioned persons by descending order
+ *
+ *  Use the Ex2TweetMiningTest to implement the code.
  */
 object Ex2TweetMining {
 
@@ -47,32 +49,37 @@ object Ex2TweetMining {
   /**
    *  Find all the persons mentioned on tweets (case sensitive)
    */
-  def mentionOnTweet(): RDD[String] = {
+  def mentionOnTweet() = {
     val tweets = loadData
-    tweets.flatMap(_.text.split(" ").filter(_.startsWith("@")).filter(_.length() > 1))
+
+    // You want to return an RDD with the mentions (RDD[String])
+    // Hint: think about separating the word in the text field and then find the mentions
+    // TODO write code here
+
+    // TODO Change the return type of this method
   }
 
   /**
    *  Count how many times each person is mentioned
    */
-  def countMentions(): RDD[(String, Int)] = {
+  def countMentions() = {
     val mentions = mentionOnTweet
-    mentions.map(p => (p, 1))
-            .reduceByKey(_ + _)
+
+    // Hint: think about what you did in the wordcount example
+    // TODO write code here
+
+    // TODO Change the return type of this method: RDD[(String, Int)]
   }
 
   /**
    *  Find the 10 most mentioned persons by descending order
    */
-  def top10mentions(): Array[(String, Int)] = {
-    countMentions.map (k => (k._2, k._1))
-                 .sortByKey(false)
-                 .map {case (v , k) => (k,v)}
-                 .take(10)
+  def top10mentions() = {
 
-    //Or a much easier way
-    //val mentionsBis = countMentions.top(10)(Ordering.by(m=>m._2))
+    // Hint: take a look at the sorting and then the take methods
+    // TODO write code here
 
+    // TODO Change the return type of this method: Array
   }
 
 }
