@@ -8,20 +8,21 @@ import com.duchessfr.spark.utils.TweetUtils
 import com.duchessfr.spark.utils.TweetUtils._
 
 /**
- * The scala API documentation: http://spark.apache.org/docs/latest/api/scala/index.html
+ *  The scala API documentation: http://spark.apache.org/docs/latest/api/scala/index.html
  *
- * Now we use another dataset (with 8198 tweets). The data are reduced tweets as the example below:
+ *  Now we use another dataset (with 8198 tweets). The data are reduced tweets as the example below:
  *
- * {"id":"572692378957430785",
- * "user":"Srkian_nishu :)",
- * "text":"@always_nidhi @YouTube no i dnt understand bt i loved of this mve is rocking",
- * "place":"Orissa",
- * "country":"India"}
+ *  {"id":"572692378957430785",
+ *  "user":"Srkian_nishu :)",
+ *  "text":"@always_nidhi @YouTube no i dnt understand bt i loved of this mve is rocking",
+ *  "place":"Orissa",
+ *  "country":"India"}
  *
- * We want to make some computations on the users:
- * - find all the tweets by user
- * - find how many tweets each user has
+ *  We want to make some computations on the users:
+ *  - find all the tweets by user
+ *  - find how many tweets each user has
  *
+ *  Use the Ex1UserMiningSpec to implement the code.
  */
 object Ex1UserMining {
 
@@ -31,7 +32,7 @@ object Ex1UserMining {
    *  Load the data from the json file and return an RDD of Tweet
    */
   def loadData(): RDD[Tweet] = {
-    // create spark configuration and spark context
+    // Create the spark configuration and spark context
     val conf = new SparkConf()
         .setAppName("User mining")
         .setMaster("local[*]")
@@ -45,32 +46,39 @@ object Ex1UserMining {
   }
 
   /**
-   *   Return for each user all his tweets
+   *   For each user return all his tweets
    */
-  def tweetsByUser(): RDD[(String, Iterable[Tweet])] = {
+  def tweetsByUser() = {
     val tweets = loadData
-    tweets.groupBy(_.user)
+    // TODO write code here
+    // Hint: the Spark API provides a groupBy method
+
+    // TODO Change the return type of this method
   }
 
   /**
    *  Compute the number of tweets by user
    */
-  def tweetByUserNumber(): RDD[(String, Int)] = {
+  def tweetByUserNumber() = {
     val tweets = loadData
-    tweets.map(tweet => (tweet.user, 1))
-          .reduceByKey(_+_)
+
+    // TODO write code here
+    // Hint: think about what you did in the wordcount example
+
+    // TODO Change the return type of this method
   }
 
 
   /**
    *  Top 10 twitterers
    */
-  def topTenTwitterers(): Array[(String, Int)] = {
-    val nbTweetsByUsers = tweetByUserNumber
-    nbTweetsByUsers.sortBy(_._2,false).take(10)
+  def topTenTwitterers() = {
 
-    // or
-    //nbTweetsByUsers.top(10)((Ordering.by(m => m._2)))
+    // Return the top 10 of persons which used to twitt the more
+    // TODO write code here
+    // Hint: the Spark API provides a sortBy method
+
+    // TODO Change the return type of this method
   }
 
 }
