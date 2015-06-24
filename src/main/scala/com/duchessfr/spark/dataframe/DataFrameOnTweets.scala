@@ -22,7 +22,13 @@ import org.apache.spark.sql._
  *  - find people who are located in Paris
  *  - find the user who tweets the more
  *
- *  Use the DataFrameOnTweetsSpec to implement the code.
+ *  And we use a dataset with 8198 tweets. Here an example of a tweet:
+ *
+ *  {"id":"572692378957430785",
+ *    "user":"Srkian_nishu :)",
+ *    "text":"@always_nidhi @YouTube no i dnt understand bt i loved of this mve is rocking",
+ *    "place":"Orissa",
+ *    "country":"India"}
  */
 object DataFrameOnTweets {
 
@@ -44,13 +50,10 @@ object DataFrameOnTweets {
     val sc = new SparkContext(conf)
 
     //Create a SQL Context
-    // TODO write code here
-    val sqlcontext = null
+    val sqlcontext = new SQLContext(sc)
 
-    // Load the data and parse it into a Tweet.
-    // Look at the Tweet Object in the TweetUtils class
-    // TODO write code here
-    null
+    // Load the data regarding the file is a json file
+    sqlcontext.read.json(pathToFile)
   }
 
 
@@ -58,31 +61,27 @@ object DataFrameOnTweets {
    *  See how looks the dataframe
    */
   def showDataFrame() = {
-    val dataframe = loadData()
+    val dataframe = loadData
 
-    // Displays the content of the DataFrame to stdout
-    // TODO write code here
+    dataframe.show
   }
 
   /**
    * Print the schema
    */
   def printSchema() = {
-    val dataframe = loadData()
+    val dataframe = loadData
 
-    // Print the schema
-    // TODO write code here
+    dataframe.printSchema
   }
 
   /**
    * Find people who are located in Paris
    */
   def filterByLocation(): DataFrame = {
-    val dataframe = loadData()
+    val dataframe = loadData
 
-    // Select all the persons which are located in Paris
-    // TODO write code here
-    null
+    dataframe.filter(dataframe.col("place").equalTo("Paris")).toDF()
   }
 
 
@@ -90,12 +89,16 @@ object DataFrameOnTweets {
    *  Find the user who tweets the more
    */
   def mostPopularTwitterer(): (Long, String) = {
-    val dataframe = loadData()
+    val dataframe = loadData
 
     // First group the tweets by user
     // Then sort by descending order and take the first one
-    // TODO write code here
-    null
+    dataframe.groupBy(dataframe.col("user"))
+        .count
+        .rdd
+        .map(x => (x.get(1).asInstanceOf[Long], x.get(0).asInstanceOf[String]))
+        .sortBy(_._1, false, 1)
+        .first
   }
 
 }

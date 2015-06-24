@@ -20,7 +20,6 @@ import com.duchessfr.spark.utils.TweetUtils._
  *  - Find all the hashtags mentioned on a tweet
  *  - Count how many times each hashtag is mentioned
  *  - Find the 10 most popular Hashtag by descending order
- *
  */
 object Ex3HashTagMining {
 
@@ -48,11 +47,8 @@ object Ex3HashTagMining {
    */
   def hashtagMentionedOnTweet() = {
     val tweets = loadData
-    // You want to return an RDD with the mentions
-    // Hint: think about separating the word in the text field and then find the mentions
-    // TODO write code here
 
-    // TODO Change the return type of this method
+    tweets.flatMap(_.text.split(" ").filter(_.startsWith("#")).filter(_.length > 1))
   }
 
 
@@ -60,22 +56,19 @@ object Ex3HashTagMining {
    *  Count how many times each hashtag is mentioned
    */
   def countMentions() = {
-    val tags= hashtagMentionedOnTweet
-    // Hint: think about what you did in the wordcount example
-    // TODO write code here
+    val tags = hashtagMentionedOnTweet
 
-    // TODO Change the return type of this method
+    tags.map((_, 1)).reduceByKey(_ + _)
   }
 
   /**
    *  Find the 10 most popular Hashtags by descending order
    */
   def top10HashTags() = {
-    val countTags= countMentions
-    // Hint: take a look at the sorting and then the take methods
-    // TODO write code here
+    val count = countMentions
 
-    // TODO Change the return type of this method
+    count.sortBy(_._2, false, 1).take(10)
+
   }
 
 }

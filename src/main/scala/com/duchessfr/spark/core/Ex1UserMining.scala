@@ -21,7 +21,6 @@ import com.duchessfr.spark.utils.TweetUtils._
  *  We want to make some computations on the users:
  *  - find all the tweets by user
  *  - find how many tweets each user has
- *
  */
 object Ex1UserMining {
 
@@ -41,7 +40,7 @@ object Ex1UserMining {
     // Load the data and parse it into a Tweet.
     // Look at the Tweet Object in the TweetUtils class.
     sc.textFile(pathToFile)
-        .mapPartitions(TweetUtils.parseFromJson(_))
+       .mapPartitions(TweetUtils.parseFromJson(_))
   }
 
   /**
@@ -49,9 +48,8 @@ object Ex1UserMining {
    */
   def tweetsByUser(): RDD[(String, Iterable[Tweet])] = {
     val tweets = loadData
-    // TODO write code here
-    // Hint: the Spark API provides a groupBy method
-    null
+
+    tweets.groupBy(_.user)
   }
 
   /**
@@ -60,21 +58,18 @@ object Ex1UserMining {
   def tweetByUserNumber(): RDD[(String, Int)] = {
     val tweets = loadData
 
-    // TODO write code here
-    // Hint: think about what you did in the wordcount example
-    null
+    tweets.map(x => (x.user, 1))
+          .reduceByKey(_ + _)
   }
-
 
   /**
    *  Top 10 twitterers
    */
-  def topTenTwitterers(): RDD[(String, Int)] = {
+  def topTenTwitterers(): Array[(String, Int)] = {
+    val data = tweetByUserNumber
 
-    // Return the top 10 of persons which used to twitt the more
-    // TODO write code here
-    // Hint: the Spark API provides a sortBy method
-    null
+    data.sortBy(_._2, false, 1)
+        .take(10)
   }
 
 }

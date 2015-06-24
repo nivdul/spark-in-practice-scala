@@ -15,7 +15,6 @@ import org.apache.spark.rdd.RDD
  *
  *  step 2, the reducer:
  *  - for each key (=word), the values are added and we will obtain the total amount.
- *
  */
 object Ex0Wordcount {
 
@@ -33,10 +32,8 @@ object Ex0Wordcount {
     val sc = new SparkContext(conf)
 
     // load data and create an RDD where each element will be a word
-    // So you want to have a RDD[String]
-    // Hint: use the Spark context and take a look at the textfile and flatMap methods
-    // TODO write code here
-    null
+    sc.textFile(pathToFile)
+      .flatMap(_.split(" "))
   }
 
   /**
@@ -45,18 +42,8 @@ object Ex0Wordcount {
   def wordcount(): RDD[(String, Int)] = {
     val tweets = loadData
 
-    // Step 1: the mapper step
-    // The philosophy: we want to attribute the number 1 to each word: so we create couples (word, 1) using the Tuple2 class.
-    // Hint: look at the mapToPair method
-    // TODO write code here
-
-    // Step 2: reducer step
-    // The philosophy: now you have couple (key, value) where the key is a word, you want to aggregate the value for each word.
-    // So you will use a reducer function.
-    // Hint: the Spark API provides some reduce methods
-    // TODO write code here
-    null
-
+    tweets.map(x => (x, 1))
+          .reduceByKey(_ + _)
   }
 
   /**
@@ -65,9 +52,7 @@ object Ex0Wordcount {
   def filterOnWordcount(): RDD[(String, Int)] = {
     val tweets = wordcount
 
-    // Hint: the Spark API provides filter method
-    // TODO write code here
-    null
+    tweets.filter(_._2 > 4)
   }
 
 }
