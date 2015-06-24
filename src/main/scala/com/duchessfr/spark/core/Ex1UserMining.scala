@@ -3,46 +3,78 @@ package com.duchessfr.spark.core
 
 import org.apache.spark.{SparkContext, SparkConf}
 
-import org.apache.spark.SparkContext._
 import org.apache.spark.rdd._
 import com.duchessfr.spark.utils.TweetUtils
 import com.duchessfr.spark.utils.TweetUtils._
 
-object Ex1UserMining extends App{
-  
- val data = "data/reduced-tweets.txt";
+/**
+ *  The scala API documentation: http://spark.apache.org/docs/latest/api/scala/index.html
+ *
+ *  Now we use another dataset (with 8198 tweets). The data are reduced tweets as the example below:
+ *
+ *  {"id":"572692378957430785",
+ *  "user":"Srkian_nishu :)",
+ *  "text":"@always_nidhi @YouTube no i dnt understand bt i loved of this mve is rocking",
+ *  "place":"Orissa",
+ *  "country":"India"}
+ *
+ *  We want to make some computations on the users:
+ *  - find all the tweets by user
+ *  - find how many tweets each user has
+ *
+ */
+object Ex1UserMining {
 
-  // create spark  configuration and spark context
-  val conf = new SparkConf()
-    .setAppName("HashTagMining")
-    .setMaster("local[*]")
+  val pathToFile = "data/reduced-tweets.json"
 
-  val sc = new SparkContext(conf)
+  /**
+   *  Load the data from the json file and return an RDD of Tweet
+   */
+  def loadData(): RDD[Tweet] = {
+    // Create the spark configuration and spark context
+    val conf = new SparkConf()
+        .setAppName("User mining")
+        .setMaster("local[*]")
 
- // Load the data  and parse it into a Tweet. Look at the Tweet Objetc in the TweetUtils class.
-  val tweets = sc.textFile(data)
-                 .mapPartitions(TweetUtils.parseFromJson(_))
-                 .cache
+    val sc = new SparkContext(conf)
 
- 
-  // Find all the tweets by user
-  
-  val tweetsByUsers= tweets.groupBy(_.user)
-  tweetsByUsers.take(10).foreach(println)   
-
-
-  // Find how many tweets each user has
- 
-  val nbTweetsByUsers = tweets.map(tweet => (tweet.user, 1))
-                              .reduceByKey(_+_)
- 
-  //Top 10 twitterers
-  val top10 = nbTweetsByUsers.sortBy(_._2,false).take(10)
- 
-  //or
-  val top10bis = nbTweetsByUsers.top(10)((Ordering.by(m => m._2)))
-
-  top10.foreach(println)
-
+    // Load the data and parse it into a Tweet.
+    // Look at the Tweet Object in the TweetUtils class.
+    sc.textFile(pathToFile)
+        .mapPartitions(TweetUtils.parseFromJson(_))
   }
 
+  /**
+   *   For each user return all his tweets
+   */
+  def tweetsByUser(): RDD[(String, Iterable[Tweet])] = {
+    val tweets = loadData
+    // TODO write code here
+    // Hint: the Spark API provides a groupBy method
+    null
+  }
+
+  /**
+   *  Compute the number of tweets by user
+   */
+  def tweetByUserNumber(): RDD[(String, Int)] = {
+    val tweets = loadData
+
+    // TODO write code here
+    // Hint: think about what you did in the wordcount example
+    null
+  }
+
+
+  /**
+   *  Top 10 twitterers
+   */
+  def topTenTwitterers(): RDD[(String, Int)] = {
+
+    // Return the top 10 of persons which used to twitt the more
+    // TODO write code here
+    // Hint: the Spark API provides a sortBy method
+    null
+  }
+
+}
