@@ -7,7 +7,7 @@ import org.scalatest.{Matchers, FunSuite}
  */
 class DataFrameOnTweetsSpec extends FunSuite with Matchers {
 
-  test("number of data loaded") {
+  test("should load the data and init the context") {
     val data = DataFrameOnTweets.loadData
     data.count should be (8198)
   }

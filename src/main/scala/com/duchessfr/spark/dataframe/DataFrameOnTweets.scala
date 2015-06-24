@@ -21,6 +21,8 @@ import org.apache.spark.sql._
  *  - print the schema of the dataframe
  *  - find people who are located in Paris
  *  - find the user who tweets the more
+ *
+ *  Use the DataFrameOnTweetsSpec to implement the code.
  */
 object DataFrameOnTweets {
 
@@ -28,7 +30,10 @@ object DataFrameOnTweets {
   val pathToFile = "data/reduced-tweets.json"
 
   /**
-   *  Load the data from the json file and return an RDD of Tweet
+   *  Here the method to create the contexts (Spark and SQL) and
+   *  then create the dataframe.
+   *
+   *  Run the test to see how looks the dataframe!
    */
   def loadData(): DataFrame = {
     // create spark configuration and spark context
@@ -39,13 +44,13 @@ object DataFrameOnTweets {
     val sc = new SparkContext(conf)
 
     //Create a SQL Context
-    val sqlcontext = new SQLContext(sc)
+    // TODO write code here
+    val sqlcontext = null
 
     // Load the data and parse it into a Tweet.
-    // Look at the Tweet Object in the TweetUtils class.
-    val dataframe = sqlcontext.read.json(pathToFile)
-
-    return dataframe
+    // Look at the Tweet Object in the TweetUtils class
+    // TODO write code here
+    null
   }
 
 
@@ -56,7 +61,7 @@ object DataFrameOnTweets {
     val dataframe = loadData()
 
     // Displays the content of the DataFrame to stdout
-    dataframe.show()
+    // TODO write code here
   }
 
   /**
@@ -65,7 +70,8 @@ object DataFrameOnTweets {
   def printSchema() = {
     val dataframe = loadData()
 
-    dataframe.printSchema()
+    // Print the schema
+    // TODO write code here
   }
 
   /**
@@ -74,23 +80,22 @@ object DataFrameOnTweets {
   def filterByLocation(): DataFrame = {
     val dataframe = loadData()
 
-    dataframe.filter(dataframe.col("place").equalTo("Paris")).toDF()
+    // Select all the persons which are located in Paris
+    // TODO write code here
+    null
   }
 
 
   /**
-   *  Find the 10 user who tweets the more
+   *  Find the user who tweets the more
    */
   def mostPopularTwitterer(): (Long, String) = {
     val dataframe = loadData()
 
-    val countByUser = dataframe.groupBy(dataframe.col("user"))
-                               .count()
-                               .rdd
-
-    countByUser.map(row => (row.get(1).asInstanceOf[Long], row.get(0).asInstanceOf[String]))
-               .sortByKey(false, 1)
-               .first
+    // First group the tweets by user
+    // Then sort by descending order and take the first one
+    // TODO write code here
+    null
   }
 
 }
