@@ -69,7 +69,7 @@ object Ex1UserMining {
   /**
    *  Top 10 twitterers
    */
-  def topTenTwitterers(): RDD[(String, Int)] = {
+  def topTenTwitterers(): Array[(String, Int)] = {
 
     // Return the top 10 of persons which used to twitt the more
     // TODO write code here
