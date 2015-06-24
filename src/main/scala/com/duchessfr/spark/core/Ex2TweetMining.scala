@@ -49,14 +49,12 @@ object Ex2TweetMining {
   /**
    *  Find all the persons mentioned on tweets (case sensitive)
    */
-  def mentionOnTweet() = {
+  def mentionOnTweet(): RDD[String] = {
     val tweets = loadData
 
-    // You want to return an RDD with the mentions (RDD[String])
     // Hint: think about separating the word in the text field and then find the mentions
     // TODO write code here
-
-    // TODO Change the return type of this method
+    null
   }
 
   /**
@@ -67,8 +65,7 @@ object Ex2TweetMining {
 
     // Hint: think about what you did in the wordcount example
     // TODO write code here
-
-    // TODO Change the return type of this method: RDD[(String, Int)]
+    null
   }
 
   /**
@@ -78,8 +75,7 @@ object Ex2TweetMining {
 
     // Hint: take a look at the sorting and then the take methods
     // TODO write code here
-
-    // TODO Change the return type of this method: Array
+    null
   }
 
 }

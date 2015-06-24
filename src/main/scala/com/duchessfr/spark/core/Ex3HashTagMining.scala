@@ -47,36 +47,33 @@ object Ex3HashTagMining {
   /**
    *  Find all the hashtags mentioned on tweets
    */
-  def hashtagMentionedOnTweet() = {
+  def hashtagMentionedOnTweet(): RDD[String] = {
     val tweets = loadData
     // You want to return an RDD with the mentions
     // Hint: think about separating the word in the text field and then find the mentions
     // TODO write code here
-
-    // TODO Change the return type of this method
+    null
     }
 
 
   /**
    *  Count how many times each hashtag is mentioned
    */
-  def countMentions() = {
+  def countMentions(): RDD[(String, Int)] = {
      val tags= hashtagMentionedOnTweet
     // Hint: think about what you did in the wordcount example
     // TODO write code here
-
-    // TODO Change the return type of this method
+    null
   }
 
   /**
    *  Find the 10 most popular Hashtags by descending order
    */
-  def top10HashTags() = {
+  def top10HashTags(): Array[(String, Int)] = {
     val countTags= countMentions
     // Hint: take a look at the sorting and then the take methods
     // TODO write code here
-
-    // TODO Change the return type of this method
+    null
   }
 
 }
