@@ -18,4 +18,11 @@ class Ex1UserMiningSpec extends FunSuite with Matchers {
     tweetsByUser.collect should contain ("Dell Feddi", 29)
   }
 
+  test("should return the top ten twitterers"){
+    val top10 = Ex1UserMining.topTenTwitterers
+    top10.size should be (10)
+    top10 should contain ("williampriceking", 46)
+    top10 should contain ("Phillthy McNasty",43)
+  }
+
 }
