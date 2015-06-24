@@ -2,6 +2,7 @@ package com.duchessfr.spark.core
 
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
+import org.apache.spark.rdd.RDD
 
 /**
  *  The scala Spark API documentation: http://spark.apache.org/docs/latest/api/scala/index.html
@@ -24,7 +25,7 @@ object Ex0Wordcount {
   /**
    *  Load the data from the text file and return an RDD of words
    */
-  def loadData() = {
+  def loadData(): RDD[String] = {
     // create spark configuration and spark context
     val conf = new SparkConf()
                         .setAppName("Wordcount")
@@ -36,15 +37,13 @@ object Ex0Wordcount {
     // So you want to have a RDD[String]
     // Hint: use the Spark context and take a look at the textfile and flatMap methods
     // TODO write code here
-
-    // TODO Change the return type of this method
-
+    null
   }
 
   /**
    *  Now count how much each word appears!
    */
-  def wordcount() = {
+  def wordcount(): RDD[(String, Int)] = {
     val tweets = loadData
 
     // Step 1: the mapper step
@@ -57,21 +56,19 @@ object Ex0Wordcount {
     // So you will use a reducer function.
     // Hint: the Spark API provides some reduce methods
     // TODO write code here
-
-    // TODO Change the return type of this method: RDD[(String, Int)]
+    null
 
   }
 
   /**
    *  Now keep the word which appear strictly more than 4 times!
    */
-  def filterOnWordcount() = {
+  def filterOnWordcount(): RDD[(String, Int)] = {
     val tweets = wordcount
 
     // Hint: the Spark API provides filter method
     // TODO write code here
-
-    // TODO Change the return type of this method
+    null
   }
 
 }

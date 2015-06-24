@@ -62,7 +62,7 @@ object Ex2TweetMining {
   /**
    *  Count how many times each person is mentioned
    */
-  def countMentions() = {
+  def countMentions(): RDD[(String, Int)] = {
     val mentions = mentionOnTweet
 
     // Hint: think about what you did in the wordcount example
@@ -74,7 +74,7 @@ object Ex2TweetMining {
   /**
    *  Find the 10 most mentioned persons by descending order
    */
-  def top10mentions() = {
+  def top10mentions(): Array[(String, Int)] = {
 
     // Hint: take a look at the sorting and then the take methods
     // TODO write code here
