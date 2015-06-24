@@ -47,8 +47,7 @@ object DataFrameOnTweets {
     // TODO write code here
     val sqlcontext = null
 
-    // Load the data and parse it into a Tweet.
-    // Look at the Tweet Object in the TweetUtils class
+    // Load the data regarding the file is a json file
     // TODO write code here
     null
   }
