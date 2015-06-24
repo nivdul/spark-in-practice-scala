@@ -1,56 +1,101 @@
 package com.duchessfr.spark.dataframe
 
 import org.apache.spark._
-import org.apache.spark.SparkContext._
 import org.apache.spark.sql._
 
+/**
+ *  The Spark SQL and DataFrame documentation is available on:
+ *  https://spark.apache.org/docs/1.4.0/sql-programming-guide.html
+ *
+ *  A DataFrame is a distributed collection of data organized into named columns.
+ *  The entry point before to use the DataFrame is the SQLContext class (from SPark SQL).
+ *  With a SQLContext, you can create DataFrames from:
+ *  - an existing RDD
+ *  - a Hive table
+ *  - data sources...
+ *
+ *  In the exercise we will create a dataframe with the content of a JSON file.
+ *
+ *  We want to:
+ *  - print the dataframe
+ *  - print the schema of the dataframe
+ *  - find people who are located in Paris
+ *  - find the user who tweets the more
+ *
+ *  Use the DataFrameOnTweetsSpec to implement the code.
+ */
+object DataFrameOnTweets {
 
-object DataFrameOnTweets extends App{
 
-   val conf = new SparkConf()
-      .setAppName("SQL Context")
-      .setMaster("local[*]")
+  val pathToFile = "data/reduced-tweets.json"
+
+  /**
+   *  Here the method to create the contexts (Spark and SQL) and
+   *  then create the dataframe.
+   *
+   *  Run the test to see how looks the dataframe!
+   */
+  def loadData(): DataFrame = {
+    // create spark configuration and spark context
+    val conf = new SparkConf()
+        .setAppName("Dataframe")
+        .setMaster("local[*]")
 
     val sc = new SparkContext(conf)
-//Create a SQL Context
 
-val sqx = new SQLContext(sc)
+    //Create a SQL Context
+    // TODO write code here
+    val sqlcontext = null
 
-//Load  the data as a JSON FILE
-val rawTweets = sqx.jsonFile("data/tweet-data.json").cache
-
-//Register the json data as tweetTable
-rawTweets.registerTempTable("tweetTable")
-
-//Now We print the schema that Spark SQL inferred by going through al json data file.
-// Take a look at the schema to see how it is structured
-rawTweets.printSchema
-
-//Now Let's query the data
-
-//Find all the  users
-val users = sqx.sql("SELECT DISTINCT user.screen_name FROM tweetTable ")//.count
-                
-users.take(10).foreach(println)
+    // Load the data and parse it into a Tweet.
+    // Look at the Tweet Object in the TweetUtils class
+    // TODO write code here
+    null
+  }
 
 
-//// Find how many tweets each user has
-val countTweetsByUsers = sqx.sql (
-            "SELECT DISTINCT user.screen_name, COUNT(*) as cnt FROM tweetTable GROUP BY user ORDER BY cnt  DESC ")
+  /**
+   *  See how looks the dataframe
+   */
+  def showDataFrame() = {
+    val dataframe = loadData()
 
-countTweetsByUsers.take(100).foreach(println)
+    // Displays the content of the DataFrame to stdout
+    // TODO write code here
+  }
+
+  /**
+   * Print the schema
+   */
+  def printSchema() = {
+    val dataframe = loadData()
+
+    // Print the schema
+    // TODO write code here
+  }
+
+  /**
+   * Find people who are located in Paris
+   */
+  def filterByLocation(): DataFrame = {
+    val dataframe = loadData()
+
+    // Select all the persons which are located in Paris
+    // TODO write code here
+    null
+  }
 
 
-// Find the most tweeted languages ....
-val languagesInTweets = sqx.sql(
-          "SELECT lang, COUNT(*) as cnt FROM tweetTable GROUP BY lang ORDER BY cnt DESC LIMIT 25" )
+  /**
+   *  Find the user who tweets the more
+   */
+  def mostPopularTwitterer(): (Long, String) = {
+    val dataframe = loadData()
 
-languagesInTweets.take(10).foreach(println)
-
-
-// For more advanced stuff like querying the depply nested data, you can use Hive inner UDFS by
-// instanciating the HiveCtx.
-// There is mor einto SPark SQL  ... Try it out.
-
+    // First group the tweets by user
+    // Then sort by descending order and take the first one
+    // TODO write code here
+    null
+  }
 
 }
