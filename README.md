@@ -27,6 +27,7 @@ Assuming #spark is a hashtag that appears in tweet1, tweet3, tweet39, the invert
 ## Part 2: streaming analytics with Spark Streaming
 Spark Streaming is a component of Spark to process live data streams in a scalable, high-throughput and fault-tolerant way.
 
+![Spark Streaming](img/streaming.png)
 
 In fact Spark Streaming receives live input data streams and divides the data into batches, which are then processed by the Spark engine to generate the final stream of results in batches.
 The abstraction, which represents a continuous stream of data is the DStream (discretized stream).
