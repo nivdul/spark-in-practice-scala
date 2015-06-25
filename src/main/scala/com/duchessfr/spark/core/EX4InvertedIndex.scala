@@ -19,7 +19,6 @@ object Ex4InvertedIndex {
    *  Assuming #spark is an hashtag that appears in tweet1, tweet3, tweet39.
    *  Our inverted index is a Map (or HashMap) that contains a
    *  (key, value) pair as (#spark, List(tweet1,tweet3, tweet39)).
-   *
    */
   def invertedIndex(): Map[String, Iterable[Tweet]] = {
     // create spark  configuration and spark context
