@@ -27,6 +27,7 @@ Assuming #spark is a hashtag that appears in tweet1, tweet3, tweet39, the invert
 ## Part 2: streaming analytics with Spark Streaming
 Spark Streaming is a component of Spark to process live data streams in a scalable, high-throughput and fault-tolerant way.
 
+![Streaming](img/streaming.png)
 
 In fact Spark Streaming receives live input data streams and divides the data into batches, which are then processed by the Spark engine to generate the final stream of results in batches.
 The abstraction, which represents a continuous stream of data is the DStream (discretized stream).
@@ -43,6 +44,7 @@ In this exercise you will have to:
 A DataFrame is a distributed collection of data organized into named columns. It is conceptually equivalent to a table in a relational database or a data frame in R/Python, but with richer optimizations under the hood.
 DataFrames can be constructed from different sources such as: structured data files, tables in Hive, external databases, or existing RDDs.
 
+![DataFrame](img/dataframe.png)
 
 In the exercise you will have to:
 
