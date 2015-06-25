@@ -44,6 +44,7 @@ In this exercise you will have to:
 A DataFrame is a distributed collection of data organized into named columns. It is conceptually equivalent to a table in a relational database or a data frame in R/Python, but with richer optimizations under the hood.
 DataFrames can be constructed from different sources such as: structured data files, tables in Hive, external databases, or existing RDDs.
 
+![DataFrame](img/dataframe.png)
 
 In the exercise you will have to:
 
