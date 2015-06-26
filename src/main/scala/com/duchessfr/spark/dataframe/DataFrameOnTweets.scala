@@ -51,7 +51,8 @@ object DataFrameOnTweets {
 
     val sc = new SparkContext(conf)
 
-    //Create a SQL Context
+    // Create a sql context: the SQLContext wraps the SparkContext, and is specific to Spark SQL.
+    // It is the entry point in Spark SQL.
     // TODO write code here
     val sqlcontext = null
 
