@@ -59,7 +59,7 @@ object StreamingOnTweets extends App {
     val status = tweetsStream.map(_.getText)
     status.print()
 
-    // Find the 10 most popular Hashtag
+    // Find the 10 most popular Hashtag in the last 30 seconds
 
     // For each tweet in the stream filter out all the hashtags
     // stream is like a sequence of RDD so you can do all the operation you did in the first part of the hands-on
