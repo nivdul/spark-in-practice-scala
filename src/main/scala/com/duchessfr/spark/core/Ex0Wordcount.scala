@@ -47,12 +47,12 @@ object Ex0Wordcount {
     val tweets = loadData
 
     // Step 1: the mapper step
-    // The philosophy: we want to attribute the number 1 to each word: so we create couples (word, 1) using the Tuple2 class.
+    // The philosophy: we want to attribute the number 1 to each word: so we create couples (word, 1).
     // Hint: look at the mapToPair method
     // TODO write code here
 
     // Step 2: reducer step
-    // The philosophy: now you have couple (key, value) where the key is a word, you want to aggregate the value for each word.
+    // The philosophy: now you have a couple (key, value) where the key is a word, you want to aggregate the value for each word.
     // So you will use a reducer function.
     // Hint: the Spark API provides some reduce methods
     // TODO write code here
