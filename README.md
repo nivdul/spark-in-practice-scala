@@ -1,10 +1,16 @@
 # Workshop spark-in-practice
 
-In this workshop the exercises are focused on using the Spark core and Spark Streaming APIs, and also the dataFrame on data processing.
-Exercises are available both in Java and Scala on this github account. You just have to clone the project and go! 
+In this workshop the exercises are focused on using the [Spark core](https://spark.apache.org/docs/1.4.0/programming-guide.html) and [Spark Streaming](https://spark.apache.org/docs/1.4.0/streaming-programming-guide.html) APIs, and also the [dataFrame](https://spark.apache.org/docs/1.4.0/sql-programming-guide.html) on data processing.
+Exercises are available both in [Java](https://github.com/nivdul/spark-in-practice) and Scala on my github account (here in java). You just have to clone the project and go! 
 If you need help, take a look at the solution branch.
 
 To help you to implement each class, unitair tests are in.
+
+Frameworks used:
+
+* Spark 1.4.0
+* maven
+* jUnit
 
 ## Part 1: Spark core API
 To be more familiar with the Spark API, you will start by implementing the wordcount example (Ex0).
