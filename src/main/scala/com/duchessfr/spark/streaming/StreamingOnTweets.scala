@@ -38,6 +38,7 @@ import org.apache.spark._
 object StreamingOnTweets extends App {
 
   def top10Hashtag() = {
+    // TODO fill the keys and tokens
     val CONSUMER_KEY = "TODO"
     val CONSUMER_SECRET = "TODO"
     val ACCESS_TOKEN = "TODO"
