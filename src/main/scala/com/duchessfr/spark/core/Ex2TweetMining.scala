@@ -9,7 +9,7 @@ import com.duchessfr.spark.utils.TweetUtils.Tweet
 /**
  *  The scala Spark API documentation: http://spark.apache.org/docs/latest/api/scala/index.html
  *
- *  Now we use a dataset with 8198 tweets. Here an example of a tweet:
+ *  We still use the dataset with the 8198 reduced tweets. Here an example of a tweet:
  *
  *  {"id":"572692378957430785",
  *    "user":"Srkian_nishu :)",
