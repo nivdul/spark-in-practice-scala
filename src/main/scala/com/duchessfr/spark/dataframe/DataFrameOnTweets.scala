@@ -8,7 +8,7 @@ import org.apache.spark.sql._
  *  https://spark.apache.org/docs/1.4.0/sql-programming-guide.html
  *
  *  A DataFrame is a distributed collection of data organized into named columns.
- *  The entry point before to use the DataFrame is the SQLContext class (from SPark SQL).
+ *  The entry point before to use the DataFrame is the SQLContext class (from Spark SQL).
  *  With a SQLContext, you can create DataFrames from:
  *  - an existing RDD
  *  - a Hive table
@@ -21,7 +21,15 @@ import org.apache.spark.sql._
  *  - print the schema of the dataframe
  *  - find people who are located in Paris
  *  - find the user who tweets the more
+ * 
+ *  And we use a dataset with 8198 tweets. Here an example of a tweet:
  *
+ *  {"id":"572692378957430785",
+ *    "user":"Srkian_nishu :)",
+ *    "text":"@always_nidhi @YouTube no i dnt understand bt i loved of this mve is rocking",
+ *    "place":"Orissa",
+ *    "country":"India"}
+ * 
  *  Use the DataFrameOnTweetsSpec to implement the code.
  */
 object DataFrameOnTweets {
