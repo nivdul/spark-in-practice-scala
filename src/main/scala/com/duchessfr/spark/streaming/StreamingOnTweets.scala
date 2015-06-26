@@ -44,6 +44,7 @@ object StreamingOnTweets extends App {
         .setMaster("local[*]")
 
     val sc = new SparkContext(conf)
+    // create a StreamingContext by providing a Spark context and a window
     val ssc = new StreamingContext(sc, Seconds(1))
 
     //Here we start a stream of tweets
