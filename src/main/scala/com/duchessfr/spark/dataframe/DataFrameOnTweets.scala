@@ -22,7 +22,7 @@ import org.apache.spark.sql._
  *  - find people who are located in Paris
  *  - find the user who tweets the more
  * 
- *  And we use a dataset with 8198 tweets. Here an example of a tweet:
+ *  And just to recap we use a dataset with 8198 tweets,where a tweet looks like that:
  *
  *  {"id":"572692378957430785",
  *    "user":"Srkian_nishu :)",
