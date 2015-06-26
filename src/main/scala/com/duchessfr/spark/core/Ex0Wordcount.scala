@@ -34,10 +34,10 @@ object Ex0Wordcount {
     val sc = new SparkContext(conf)
 
     // load data and create an RDD where each element will be a word
-    // So you want to have a RDD[String]
-    // Hint: use the Spark context and take a look at the textfile and flatMap methods
-    // TODO write code here
-    null
+    // Here the flatMap method is used to separate the word in each line using the space separator
+    // In this way it returns an RDD where each "element" is a word
+    sc.textFile(pathToFile)
+      .flatMap(_.split(" "))
   }
 
   /**
