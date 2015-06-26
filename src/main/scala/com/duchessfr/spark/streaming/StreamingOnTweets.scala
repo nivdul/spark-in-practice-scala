@@ -59,7 +59,7 @@ object StreamingOnTweets extends App {
     val status = tweetsStream.map(_.getText)
     status.print()
 
-    // Find the 10 most popular Hashtag in the last 30 seconds
+    // Find the 10 most popular Hashtag in the last 60 seconds
 
     // For each tweet in the stream filter out all the hashtags
     // stream is like a sequence of RDD so you can do all the operation you did in the first part of the hands-on
@@ -69,7 +69,7 @@ object StreamingOnTweets extends App {
     // Hint: look at the reduceByKeyAndWindow function in the spark doc.
     // Reduce last 60 seconds of data
     val top10 = hashTags.map(x => (x, 1))
-        .reduceByKeyAndWindow((_ + _), Seconds(30))
+        .reduceByKeyAndWindow((_ + _), Seconds(60))
         .map { case (topic, count) => (count, topic) }
         .transform(_.sortByKey(false))
 
