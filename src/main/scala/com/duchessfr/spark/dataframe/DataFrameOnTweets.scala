@@ -56,6 +56,7 @@ object DataFrameOnTweets {
     val sqlcontext = null
 
     // Load the data regarding the file is a json file
+    // Hint: use the sqlContext and apply the read method before loading the json file
     // TODO write code here
     null
   }
