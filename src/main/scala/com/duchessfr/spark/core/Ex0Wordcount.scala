@@ -66,7 +66,7 @@ object Ex0Wordcount {
   def filterOnWordcount(): RDD[(String, Int)] = {
     val tweets = wordcount
 
-    // Hint: the Spark API provides filter method
+    // Hint: the Spark API provides a filter method
     // TODO write code here
     null
   }
