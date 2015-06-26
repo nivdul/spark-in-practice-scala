@@ -44,15 +44,17 @@ object StreamingOnTweets extends App {
         .setMaster("local[*]")
 
     val sc = new SparkContext(conf)
-    // create a StreamingContext by providing a Spark context and a window
-    val ssc = new StreamingContext(sc, Seconds(1))
+    // create a StreamingContext by providing a Spark context and a window (2 seconds batch)
+    val ssc = new StreamingContext(sc, Seconds(2))
 
-    //Here we start a stream of tweets
+    // create a DStream (sequence of RDD). The object tweetsStream is a DStream of tweet statuses:
+    // - the Status class contains all information of a tweet
+    // See http://twitter4j.org/javadoc/twitter4j/Status.html
     val tweetsStream = TwitterUtils.createStream(ssc, None, Array[String]())
 
     //Your turn ...
 
-    // Print the status's text of each status
+    // Print the status text of the some of the tweets
     // You must see tweets appear in the console
     val status = tweetsStream.map(_.getText)
     status.print()
@@ -79,6 +81,8 @@ object StreamingOnTweets extends App {
     }
     }
 
+    // we need to tell the context to start running the computation we have setup
+    // it won't work if you don't add this!
     ssc.start
     ssc.awaitTermination
   }
