@@ -18,7 +18,7 @@ object Ex4InvertedIndex {
    *  How does it work?
    *
    *  Assuming #spark is an hashtag that appears in tweet1, tweet3, tweet39.
-   *  Our inverted index is a Map (or HashMap) that contains a (key, value) pair as (#spark, List(tweet1,tweet3, tweet39)).
+   *  The inverted index that you must return should be a Map (or HashMap) that contains a (key, value) pair as (#spark, List(tweet1,tweet3, tweet39)).
    *
    *  Use the Ex4InvertedIndexSpec to implement the code.
    */
