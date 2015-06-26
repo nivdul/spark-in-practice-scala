@@ -30,7 +30,7 @@ import org.apache.spark._
  * which represents a continuous stream of data.
  *
  * In this exercise we will:
- * - Print the status's text of each tweet's status
+ * - Print the status text of the some of the tweets
  * - Find the 10 most popular Hashtag
  *
  * You can see informations about the streaming in the Spark UI console: http://localhost:4040/streaming/
@@ -60,16 +60,21 @@ object StreamingOnTweets extends App {
         .setMaster("local[*]")
 
     val sc = new SparkContext(conf)
+    // create a StreamingContext by providing a Spark context and a window (2 seconds batch)
     val ssc = new StreamingContext(sc, Seconds(2))
 
     println("Initializing Twitter stream...")
 
-    //Here we start a stream of tweets
+    // Here we start a stream of tweets
+    // The object tweetsStream is a DStream of tweet statuses:
+    // - the Status class contains all information of a tweet
+    // See http://twitter4j.org/javadoc/twitter4j/Status.html
+    // and fill the keys and tokens
     val tweetsStream = TwitterUtils.createStream(ssc, None, Array[String]())
 
     //Your turn ...
 
-    // Print the status's text of each status
+    // Print the status text of the some of the tweets
     // You must see tweets appear in the console
     val status = tweetsStream.map(_.getText)
     // Here print the status's text: see the Status class
@@ -96,7 +101,8 @@ object StreamingOnTweets extends App {
     // Hint: loop on the RDD and take the 10 most popular
     // TODO write code here
 
-    // Start the context: it won't work if you don't add this!
+    // we need to tell the context to start running the computation we have setup
+    // it won't work if you don't add this!
     ssc.start
     ssc.awaitTermination
   }
