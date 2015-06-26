@@ -16,8 +16,7 @@ Frameworks used:
 All exercises runs in local mode as a standalone program.
 
 To work on the hands-on, retrieve the code via the following command line:
-<pre><code>Scala
-$ git clone https://github.com/nivdul/spark-in-practice-scala.git</code></pre>
+<pre><code>$ git clone https://github.com/nivdul/spark-in-practice-scala.git</code></pre>
 
 Then you can import the project in IntelliJ or Eclipse (add the SBT and Scala plugins for Scala), or use sublime text for example.
 
