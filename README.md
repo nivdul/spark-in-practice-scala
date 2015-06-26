@@ -9,9 +9,29 @@ To help you to implement each class, unitair tests are in.
 Frameworks used:
 
 * Spark 1.4.0
+* scala 2.10
 * sbt
 * scalatest
 
+All exercises runs in local mode as a standalone program.
+
+To work on the hands-on, retrieve the code via the following command line:
+<pre><code>$ git clone https://github.com/nivdul/spark-in-practice-scala.git</code></pre>
+
+Then you can import the project in IntelliJ or Eclipse (add the SBT and Scala plugins for Scala), or use sublime text for example.
+
+If you want to use the interactive spark-shell (only scala/python), you need to download a [binary Spark distribution](https://spark.apache.org/downloads.html).
+
+<pre><code>Go to the Spark directory
+$ cd /spark-1.4.0
+
+First build the project
+$ build/mvn -DskipTests clean package
+
+Launch the spark-shell
+$ ./bin/spark-shell
+scala>
+</code></pre>
 ## Part 1: Spark core API
 To be more familiar with the Spark API, you will start by implementing the wordcount example (Ex0).
 After that we use reduced tweets as the data along a json format for data mining (Ex1-Ex3).
