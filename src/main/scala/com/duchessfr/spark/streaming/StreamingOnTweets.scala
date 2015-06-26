@@ -31,7 +31,7 @@ import org.apache.spark._
  *
  * In this exercise we will:
  * - Print the status text of the some of the tweets
- * - Find the 10 most popular Hashtag in the last 30 seconds
+ * - Find the 10 most popular Hashtag in the last minute
  *
  * You can see informations about the streaming in the Spark UI console: http://localhost:4040/streaming/
  */
@@ -82,7 +82,7 @@ object StreamingOnTweets extends App {
     // TODO write code here
 
 
-    // Find the 10 most popular Hashtag in the last 30 seconds
+    // Find the 10 most popular Hashtag in the last minute
 
     // For each tweet in the stream filter out all the hashtags
     // stream is like a sequence of RDD so you can do all the operation you did in the first part of the hands-on
@@ -90,7 +90,7 @@ object StreamingOnTweets extends App {
     // TODO write code here
     val hashTags = null
 
-    // Now here, find the 10 most popular hashtags in a 30 seconds window
+    // Now here, find the 10 most popular hashtags in a 60 seconds window
     // Hint: look at the reduceByKeyAndWindow function in the spark doc.
     // Reduce last 60 seconds of data
     // Hint: look at the transform function to operate on the DStream
