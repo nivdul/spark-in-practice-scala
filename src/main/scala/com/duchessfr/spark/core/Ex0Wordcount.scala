@@ -26,10 +26,12 @@ object Ex0Wordcount {
    *  Load the data from the text file and return an RDD of words
    */
   def loadData(): RDD[String] = {
-    // create spark configuration and spark context
+    // create spark configuration and spark context: the Spark context is the entry point in Spark.
+    // It represents the connexion to Spark and it is the place where you can configure the common properties
+    // like the app name, the master url, memories allocation...
     val conf = new SparkConf()
                         .setAppName("Wordcount")
-                        .setMaster("local[*]")
+                        .setMaster("local[*]") // here local mode. And * means you will use as much as you have cores.
 
     val sc = new SparkContext(conf)
 
