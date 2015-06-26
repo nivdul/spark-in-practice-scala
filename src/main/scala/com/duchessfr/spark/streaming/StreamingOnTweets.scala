@@ -31,7 +31,7 @@ import org.apache.spark._
  *
  * In this exercise we will:
  * - Print the status text of the some of the tweets
- * - Find the 10 most popular Hashtag
+ * - Find the 10 most popular Hashtag in the last 30 seconds
  *
  * You can see informations about the streaming in the Spark UI console: http://localhost:4040/streaming/
  */
@@ -82,7 +82,7 @@ object StreamingOnTweets extends App {
     // TODO write code here
 
 
-    // Find the 10 most popular Hashtag
+    // Find the 10 most popular Hashtag in the last 30 seconds
 
     // For each tweet in the stream filter out all the hashtags
     // stream is like a sequence of RDD so you can do all the operation you did in the first part of the hands-on
