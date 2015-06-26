@@ -7,6 +7,7 @@ import org.scalatest._
  */
 class Ex0WordcountSpec extends FunSuite with Matchers {
 
+  // this test is already green but see how we download the data in the loadData method
   test("number of data loaded") {
     val data = Ex0Wordcount.loadData
     data.count should be (809)
