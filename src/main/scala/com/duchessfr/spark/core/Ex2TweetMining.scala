@@ -73,7 +73,7 @@ object Ex2TweetMining {
    */
   def top10mentions(): Array[(String, Int)] = {
 
-    // Hint: take a look at the sorting and then the take methods
+    // Hint: take a look at the sorting and take methods
     // TODO write code here
     null
   }
