@@ -9,8 +9,8 @@ To help you to implement each class, unitair tests are in.
 Frameworks used:
 
 * Spark 1.4.0
-* maven
-* jUnit
+* sbt
+* scalatest
 
 ## Part 1: Spark core API
 To be more familiar with the Spark API, you will start by implementing the wordcount example (Ex0).
