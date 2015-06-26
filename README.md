@@ -9,6 +9,7 @@ To help you to implement each class, unitair tests are in.
 Frameworks used:
 
 * Spark 1.4.0
+* scala 2.10
 * sbt
 * scalatest
 
