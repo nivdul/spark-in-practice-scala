@@ -6,7 +6,7 @@ If you need help, take a look at the solution branch.
 
 The original blog-post is right [here](http://www.duchess-france.org/starting-with-spark-in-practice/).
 
-To help you to implement each class, unitair tests are in.
+To help you to implement each class, unit tests are in.
 
 Frameworks used:
 
