@@ -1,4 +1,4 @@
-name := "Duchess Spark-HandsOn"
+name := "Spark-HandsOn"
 
 version := "1.0"
 
