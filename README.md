@@ -4,7 +4,9 @@ In this workshop the exercises are focused on using the [Spark core](https://spa
 Exercises are available both in [Java](https://github.com/nivdul/spark-in-practice) and Scala on my github account (here in scala). You just have to clone the project and go! 
 If you need help, take a look at the solution branch.
 
-To help you to implement each class, unitair tests are in.
+The original blog-post is right [here](https://nivdul.wordpress.com/2015/08/09/getting-started-with-spark-in-practice/).
+
+To help you to implement each class, unit tests are in.
 
 Frameworks used:
 
