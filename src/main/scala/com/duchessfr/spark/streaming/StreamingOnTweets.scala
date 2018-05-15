@@ -37,7 +37,7 @@ import org.apache.spark._
  */
 object StreamingOnTweets extends App {
 
-  def top10Hashtag() = {
+  def top10Hashtag(sc: SparkContext) = {
     // TODO fill the keys and tokens
     val CONSUMER_KEY = "TODO"
     val CONSUMER_SECRET = "TODO"
@@ -49,17 +49,6 @@ object StreamingOnTweets extends App {
     System.setProperty("twitter4j.oauth.accessToken", ACCESS_TOKEN)
     System.setProperty("twitter4j.oauth.accessTokenSecret", ACCESS_TOKEN_SECRET)
 
-    // Load the data using TwitterUtils: we obtain a DStream of tweets
-    //
-    // More about TwitterUtils:
-    // https://spark.apache.org/docs/1.4.0/api/java/index.html?org/apache/spark/streaming/twitter/TwitterUtils.html
-
-    // create spark configuration and spark context
-    val conf = new SparkConf()
-        .setAppName("streaming")
-        .setMaster("local[*]")
-
-    val sc = new SparkContext(conf)
     // create a StreamingContext by providing a Spark context and a window (2 seconds batch)
     val ssc = new StreamingContext(sc, Seconds(2))
 
@@ -80,7 +69,7 @@ object StreamingOnTweets extends App {
     // Here print the status's text: see the Status class
     // Hint: use the print method
     // TODO write code here
-
+    ???
 
     // Find the 10 most popular Hashtag in the last minute
 
@@ -88,19 +77,20 @@ object StreamingOnTweets extends App {
     // stream is like a sequence of RDD so you can do all the operation you did in the first part of the hands-on
     // Hint: think about what you did in the Hashtagmining part
     // TODO write code here
-    val hashTags = null
+    val hashTags = ???
 
     // Now here, find the 10 most popular hashtags in a 60 seconds window
     // Hint: look at the reduceByKeyAndWindow function in the spark doc.
     // Reduce last 60 seconds of data
     // Hint: look at the transform function to operate on the DStream
     // TODO write code here
-    val top10 = null
+    val top10 = ???
 
     // and return the 10 most populars
     // Hint: loop on the RDD and take the 10 most popular
     // TODO write code here
-
+    ???
+    
     // we need to tell the context to start running the computation we have setup
     // it won't work if you don't add this!
     ssc.start

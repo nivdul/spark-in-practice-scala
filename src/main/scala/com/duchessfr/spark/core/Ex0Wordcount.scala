@@ -25,15 +25,7 @@ object Ex0Wordcount {
   /**
    *  Load the data from the text file and return an RDD of words
    */
-  def loadData(): RDD[String] = {
-    // create spark configuration and spark context: the Spark context is the entry point in Spark.
-    // It represents the connexion to Spark and it is the place where you can configure the common properties
-    // like the app name, the master url, memories allocation...
-    val conf = new SparkConf()
-                        .setAppName("Wordcount")
-                        .setMaster("local[*]") // here local mode. And * means you will use as much as you have cores.
-
-    val sc = new SparkContext(conf)
+  def loadData(sc: SparkContext): RDD[String] = {
 
     // load data and create an RDD where each element will be a word
     // Here the flatMap method is used to separate the word in each line using the space separator
@@ -45,32 +37,35 @@ object Ex0Wordcount {
   /**
    *  Now count how much each word appears!
    */
-  def wordcount(): RDD[(String, Int)] = {
-    val tweets = loadData
+  def wordcount(sc: SparkContext): RDD[(String, Int)] = {
+    val tweets = loadData(sc)
 
     // Step 1: the mapper step
     // The philosophy: we want to attribute the number 1 to each word: so we create couples (word, 1).
     // Hint: look at the mapToPair method
     // TODO write code here
 
+
     // Step 2: reducer step
     // The philosophy: now you have a couple (key, value) where the key is a word, you want to aggregate the value for each word.
     // So you will use a reducer function.
     // Hint: the Spark API provides some reduce methods
     // TODO write code here
-    null
 
+    ???
   }
 
   /**
    *  Now keep the word which appear strictly more than 4 times!
    */
-  def filterOnWordcount(): RDD[(String, Int)] = {
-    val tweets = wordcount
+  def filterOnWordcount(sc: SparkContext): RDD[(String, Int)] = {
+    val tweets = wordcount(sc)
 
     // Hint: the Spark API provides a filter method
     // TODO write code here
-    null
+
+    ???
+
   }
 
 }

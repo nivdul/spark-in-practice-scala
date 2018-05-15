@@ -31,14 +31,7 @@ object Ex2TweetMining {
   /**
    *  Load the data from the json file and return an RDD of Tweet
    */
-  def loadData(): RDD[Tweet] = {
-    // create spark configuration and spark context
-    val conf = new SparkConf()
-        .setAppName("Tweet mining")
-        .setMaster("local[*]")
-
-    val sc = new SparkContext(conf)
-
+  def loadData(sc: SparkContext): RDD[Tweet] = {
     // Load the data and parse it into a Tweet.
     // Look at the Tweet Object in the TweetUtils class.
     sc.textFile(pathToFile)
@@ -49,33 +42,33 @@ object Ex2TweetMining {
   /**
    *  Find all the persons mentioned on tweets (case sensitive)
    */
-  def mentionOnTweet(): RDD[String] = {
-    val tweets = loadData
+  def mentionOnTweet(sc: SparkContext): RDD[String] = {
+    val tweets = loadData(sc)
 
     // Hint: think about separating the word in the text field and then find the mentions
     // TODO write code here
-    null
+    ???
   }
 
   /**
    *  Count how many times each person is mentioned
    */
-  def countMentions(): RDD[(String, Int)] = {
-    val mentions = mentionOnTweet
+  def countMentions(sc: SparkContext): RDD[(String, Int)] = {
+    val mentions = mentionOnTweet(sc)
 
     // Hint: think about what you did in the wordcount example
     // TODO write code here
-    null
+    ???
   }
 
   /**
    *  Find the 10 most mentioned persons by descending order
    */
-  def top10mentions(): Array[(String, Int)] = {
+  def top10mentions(sc: SparkContext): Array[(String, Int)] = {
 
     // Hint: take a look at the sorting and take methods
     // TODO write code here
-    null
+    ???
   }
 
 }

@@ -22,14 +22,7 @@ object Ex4InvertedIndex {
    *
    *  Use the Ex4InvertedIndexSpec to implement the code.
    */
-  def invertedIndex(): Map[String, Iterable[Tweet]] = {
-    // create spark  configuration and spark context
-    val conf = new SparkConf ()
-        .setAppName ("Inverted index")
-        .setMaster ("local[*]")
-
-    val sc = new SparkContext (conf)
-
+  def invertedIndex(sc: SparkContext): Map[String, Iterable[Tweet]] = {
     val tweets = sc.textFile ("data/reduced-tweets.json")
         .mapPartitions (TweetUtils.parseFromJson (_) )
 
@@ -39,7 +32,7 @@ object Ex4InvertedIndex {
     // Then group the tweets by hashtag
     // Finally return the inverted index as a map structure
     // TODO write code here
-    null
+    ???
   }
 
 }

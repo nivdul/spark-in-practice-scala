@@ -30,14 +30,7 @@ object Ex3HashTagMining {
   /**
    *  Load the data from the json file and return an RDD of Tweet
    */
-  def loadData(): RDD[Tweet] = {
-    // create spark configuration and spark context
-    val conf = new SparkConf()
-        .setAppName("Hashtag mining")
-        .setMaster("local[*]")
-
-    val sc = new SparkContext(conf)
-
+  def loadData(sc: SparkContext): RDD[Tweet] = {
     // Load the data and parse it into a Tweet.
     // Look at the Tweet Object in the TweetUtils class.
     sc.textFile(pathToFile)
@@ -47,33 +40,33 @@ object Ex3HashTagMining {
   /**
    *  Find all the hashtags mentioned on tweets
    */
-  def hashtagMentionedOnTweet(): RDD[String] = {
-    val tweets = loadData
+  def hashtagMentionedOnTweet(sc: SparkContext): RDD[String] = {
+    val tweets = loadData(sc)
     // You want to return an RDD with the mentions
     // Hint: think about separating the word in the text field and then find the mentions
     // TODO write code here
-    null
+    ???
     }
 
 
   /**
    *  Count how many times each hashtag is mentioned
    */
-  def countMentions(): RDD[(String, Int)] = {
-     val tags= hashtagMentionedOnTweet
+  def countMentions(sc: SparkContext): RDD[(String, Int)] = {
+     val tags= hashtagMentionedOnTweet(sc)
     // Hint: think about what you did in the wordcount example
     // TODO write code here
-    null
+    ???
   }
 
   /**
    *  Find the 10 most popular Hashtags by descending order
    */
-  def top10HashTags(): Array[(String, Int)] = {
-    val countTags= countMentions
+  def top10HashTags(sc: SparkContext): Array[(String, Int)] = {
+    val countTags= countMentions(sc)
     // Hint: take a look at the sorting and take methods
     // TODO write code here
-    null
+    ???
   }
 
 }
