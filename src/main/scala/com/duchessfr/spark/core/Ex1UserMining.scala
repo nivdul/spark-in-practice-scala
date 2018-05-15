@@ -31,50 +31,46 @@ object Ex1UserMining {
   /**
    *  Load the data from the json file and return an RDD of Tweet
    */
-  def loadData(): RDD[Tweet] = {
-    // Create the spark configuration and spark context
-    val conf = new SparkConf()
-        .setAppName("User mining")
-        .setMaster("local[*]")
-
-    val sc = new SparkContext(conf)
-
+  def loadData(sc: SparkContext): RDD[Tweet] = {
     // Load the data and parse it into a Tweet.
     // Look at the Tweet Object in the TweetUtils class.
-    sc.textFile(pathToFile).mapPartitions(TweetUtils.parseFromJson(_))
+    sc.textFile(pathToFile).mapPartitions(TweetUtils.parseFromJson)
   }
 
   /**
    *   For each user return all his tweets
    */
-  def tweetsByUser(): RDD[(String, Iterable[Tweet])] = {
-    val tweets = loadData
+  def tweetsByUser(sc: SparkContext): RDD[(String, Iterable[Tweet])] = {
+    val tweets = loadData(sc)
     // TODO write code here
     // Hint: the Spark API provides a groupBy method
-    null
+
+    ???
   }
 
   /**
    *  Compute the number of tweets by user
    */
-  def tweetByUserNumber(): RDD[(String, Int)] = {
-    val tweets = loadData
+  def tweetByUserNumber(sc: SparkContext): RDD[(String, Int)] = {
+    val tweets = loadData(sc)
 
     // TODO write code here
     // Hint: think about what you did in the wordcount example
-    null
+
+    ???
   }
 
 
   /**
    *  Top 10 twitterers
    */
-  def topTenTwitterers(): Array[(String, Int)] = {
+  def topTenTwitterers(sc: SparkContext): Array[(String, Int)] = {
 
     // Return the top 10 of persons which used to twitt the more
     // TODO write code here
     // Hint: the Spark API provides a sortBy method
-    null
+
+    ???
   }
 
 }

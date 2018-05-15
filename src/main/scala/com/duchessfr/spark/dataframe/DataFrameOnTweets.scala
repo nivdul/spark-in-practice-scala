@@ -38,19 +38,12 @@ object DataFrameOnTweets {
   val pathToFile = "data/reduced-tweets.json"
 
   /**
-   *  Here the method to create the contexts (Spark and SQL) and
+   *  Here the method to create the contexts (Spark SQL) and
    *  then create the dataframe.
    *
    *  Run the test to see how looks the dataframe!
    */
-  def loadData(): DataFrame = {
-    // create spark configuration and spark context
-    val conf = new SparkConf()
-        .setAppName("Dataframe")
-        .setMaster("local[*]")
-
-    val sc = new SparkContext(conf)
-
+  def loadData(sc: SparkContext): DataFrame = {
     // Create a sql context: the SQLContext wraps the SparkContext, and is specific to Spark SQL.
     // It is the entry point in Spark SQL.
     // TODO write code here
@@ -59,52 +52,54 @@ object DataFrameOnTweets {
     // Load the data regarding the file is a json file
     // Hint: use the sqlContext and apply the read method before loading the json file
     // TODO write code here
-    null
+    ???
   }
 
 
   /**
    *  See how looks the dataframe
    */
-  def showDataFrame() = {
-    val dataframe = loadData()
+  def showDataFrame(sc: SparkContext) = {
+    val dataframe = loadData(sc)
 
     // Displays the content of the DataFrame to stdout
     // TODO write code here
+    ???
   }
 
   /**
    * Print the schema
    */
-  def printSchema() = {
-    val dataframe = loadData()
+  def printSchema(sc: SparkContext) = {
+    val dataframe = loadData(sc)
 
     // Print the schema
     // TODO write code here
+    ???
   }
 
   /**
    * Find people who are located in Paris
    */
-  def filterByLocation(): DataFrame = {
-    val dataframe = loadData()
+  def filterByLocation(sc: SparkContext): DataFrame = {
+    val dataframe = loadData(sc)
 
     // Select all the persons which are located in Paris
     // TODO write code here
-    null
+    ???
   }
 
 
   /**
    *  Find the user who tweets the more
    */
-  def mostPopularTwitterer(): (Long, String) = {
-    val dataframe = loadData()
+  def mostPopularTwitterer(sc: SparkContext): (Long, String) = {
+    val dataframe = loadData(sc)
 
     // First group the tweets by user
     // Then sort by descending order and take the first one
     // TODO write code here
-    null
+    ???
   }
 
 }

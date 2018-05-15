@@ -1,19 +1,20 @@
 package com.duchessfr.spark.dataframe
 
-import org.scalatest.{Matchers, FunSuite}
+import com.holdenkarau.spark.testing.SharedSparkContext
+import org.scalatest.{FunSuite, Matchers}
 
 /**
  * Here are the tests to help you to implement the DataFrameOnTweets class
  */
-class DataFrameOnTweetsSpec extends FunSuite with Matchers {
+class DataFrameOnTweetsSpec extends FunSuite with Matchers with SharedSparkContext {
 
   test("should load the data and init the context") {
-    val data = DataFrameOnTweets.loadData
+    val data = DataFrameOnTweets.loadData(sc)
     data.count should be (8198)
   }
 
   test("should show the dataframe"){
-    DataFrameOnTweets.showDataFrame
+    DataFrameOnTweets.showDataFrame(sc)
     // you must see something like that in your console:
     //+--------------------+------------------+-----------------+--------------------+-------------------+
     //|             country|                id|            place|                text|               user|
@@ -24,7 +25,7 @@ class DataFrameOnTweetsSpec extends FunSuite with Matchers {
   }
 
   test("should print the schema"){
-    DataFrameOnTweets.printSchema
+    DataFrameOnTweets.printSchema(sc)
     // you must see something like that in your console:
     // root
     //    |-- country: string (nullable = true)
@@ -35,12 +36,12 @@ class DataFrameOnTweetsSpec extends FunSuite with Matchers {
   }
 
   test("should group the tweets by location") {
-    val data = DataFrameOnTweets.filterByLocation
+    val data = DataFrameOnTweets.filterByLocation(sc)
     data.count should be (329)
   }
 
   test("should return the most popular twitterer") {
-    val populars = DataFrameOnTweets.mostPopularTwitterer
+    val populars = DataFrameOnTweets.mostPopularTwitterer(sc)
     populars should be (258, "#QuissyUpSoon")
   }
 
